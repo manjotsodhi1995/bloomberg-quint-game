@@ -11,12 +11,7 @@ The rules of the game are as follows:
 * When the user clicks on a square
     * If the square was hiding a diamond, the diamond appears
     * Otherwise, the square is opened, and blank
-* The game ends when all diamonds are found. The user's score is the number of squares still left unturned.
-
-## Advanced: Adding Hints
-
-Part II of this problem adds the ability to add hints to empty squares
-
+* The game ends when all diamonds are found. The user's score is the number of squares still left unturned
 * When the user clicks on a square
     * If the square was not a diamond, then an arrow appears, pointing towards the nearest diamond
     * Any arrows that were previously show become hidden
