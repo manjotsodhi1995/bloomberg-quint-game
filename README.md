@@ -1,4 +1,4 @@
-# Diamond Sweeper
+# Bloomberg Quint - Diamond Sweeper Game
 
 ## Problem Statement
 
@@ -21,9 +21,7 @@ Part II of this problem adds the ability to add hints to empty squares
     * If the square was not a diamond, then an arrow appears, pointing towards the nearest diamond
     * Any arrows that were previously show become hidden
 
-## Starter App
-
-Provided is a simple application which can be used as a starter kit. It contains a simple UI for the above problem. Feel free to add any libraries or frameworks that you believe can help. Unit tests for any logic that the application contains is a bonus.
+## Prerequisites for viewing the demo
 
 Requirements:
 
@@ -37,19 +35,16 @@ To start the Application:
 * Start the webserver: `npm start`
 * Visit `http://localhost:3000` to see the application
 
-If you have done the above steps correctly, you should see the below
 
-![Screenshot](./screenshot.jpg)
 
-If you make a change, run the last two steps above to see it reflected.
+## Features 
+* The application is responsive and is tested in Iphone 6,7,8 and ipad and other related devices along with chrome browser
+* It is made using the latest version of react and node js 
+* The data is stored in localstorage of browser to update the values used in the game
+* nodemon is enabled for reloading of the backend node js server
+* webpack hot reloading is also configured in webpack config 
+* unit test cases are written in mocha for testing
+* minifying of the app and assests is handled by webpack config
+* using webpack file-loader config to serve the sattic files
+* using the favicon for the application
 
-## Bonus Sections
-
-You may also choose to try some of the bonus parts of this problem:
-
-1. (UI) - Improve the board to semantic html. The default HTML provided uses tables.
-2. (UI) - Make the UI responsive.
-3. (Javascript) - Support the ability to save your progress, and load your last save.
-4. (Javascript) - Cover logic in your application with meaningful tests
-5. (Infra) - Get hot reloading working
-6. (Infra) - Get asset pipelining and minification working
