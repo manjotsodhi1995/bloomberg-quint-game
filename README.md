@@ -25,6 +25,8 @@ Requirements:
 
 To start the Application:
 
+* Clone the repository in the required folder of your machine : https://github.com/manjotsodhi1995/bloomberg-quint-game.git
+* Get inside the folder by running the command ` cd bloomberg-quint-game ` and run the below commands in the sequence 
 * Install the dependencies (via `yarn install` or `npm install`)
 * Compile Assets: `npm run compile`
 * Start the webserver: `npm start`
