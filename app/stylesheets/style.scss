@@ -1,0 +1,111 @@
+.container {
+  background: #02968761;
+}
+
+.wrapper {
+  padding-top: 110px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-image: linear-gradient(90deg, lightyellow, lightblue);
+
+  @media screen and (min-width: 768px) {
+    padding: 110px 32px 32px 32px;
+  }
+}
+
+#title {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 32px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: lighter;
+  box-shadow: 0px 0px 8px #029687;
+  background: #009688;
+  color: bisque;
+  user-select: none;
+}
+#notes {
+  padding: 32px;
+  text-align: left;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: lighter;
+  color: black;
+  user-select: none;
+}
+.diamondsweeper-board {
+  overflow: hidden;
+  justify-content: center;
+  align-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 8px;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: flex-start;
+    grid-template-columns: repeat(8, 1fr);
+    justify-content: center;
+    align-content: center;
+  }
+}
+
+.cell-wrapper {
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #a7a7a7b0;
+  // border: 6px solid #2c3e50;
+  // border-radius: 8px;
+  box-shadow: 0px 0px 2px #ababab;
+  background-color: white;
+  transition: transform 0.1s ease-out;
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin: 32px;
+  }
+}
+
+.cell {
+  height: 50px;
+  width: 50px;
+  background-size: 50px 50px;
+  cursor: pointer;
+
+  &.diamond {
+    background-image: url(diamond.png);
+  }
+
+  &.arrow-left {
+    background-image: url(arrow-left.png);
+  }
+
+  &.arrow-right {
+    background-image: url(arrow-right.png);
+  }
+
+  &.arrow-up {
+    background-image: url(arrow-up.png);
+  }
+
+  &.arrow-down {
+    background-image: url(arrow-down.png);
+  }
+
+  &.unknown {
+    background-image: url(question.png);
+  }
+}
