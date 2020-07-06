@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
+//rendering each cell on the html page
 const Cell = ({ id, className, handleClick }) => (
   <div className="cell-wrapper">
     <div id={id} onClick={handleClick} className={className} />
@@ -10,7 +11,7 @@ const Cell = ({ id, className, handleClick }) => (
 Cell.propTypes = {
   id: PropTypes.number.isRequired,
   className: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default Cell;

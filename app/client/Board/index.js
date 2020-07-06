@@ -4,17 +4,20 @@ import { getGameData, revealCell } from "Api";
 import Cell from "Cell";
 
 class Board extends Component {
+  // initialize state of the board
   state = {
     cells: [],
     gameOver: false,
     score: 0
   };
 
+  // call method when the board is rendered for the first time
   componentDidMount() {
+    //get data from localstorage
     const gameData = localStorage.getItem("gameData");
 
     if (!this.state.gameOver && gameData) {
-      // fetch from localStorage
+      // fetch from localStorage and set the state
       this.setState({ ...JSON.parse(gameData) });
     } else {
       getGameData().then(response => {
@@ -24,6 +27,7 @@ class Board extends Component {
     }
   }
 
+  //handle the click on any of the events
   handleClick = event => {
     if (this.state.gameOver) return;
 
@@ -38,9 +42,12 @@ class Board extends Component {
       });
     });
   };
-
+  // render the user interface
   render() {
+    //get the initial state
     const { cells, gameOver, score } = this.state;
+
+    // styles for the game over text
     const styles = {
       textAlign: "center",
       color: "red",
@@ -49,6 +56,7 @@ class Board extends Component {
       lineHeight: "40px"
     };
 
+    // create empty cells which will have hidden data
     const template = cells.map(innerCells =>
       innerCells.map(cell => (
         <Cell
@@ -60,12 +68,14 @@ class Board extends Component {
       ))
     );
 
+    // game over message
     const gameOverMessage = gameOver ? (
       <p style={styles}> Game over!! Your score is: {score} </p>
     ) : (
       ""
     );
 
+    // render the Html on the screen which is responsive
     return (
       <div className="wrapper">
         {gameOverMessage}

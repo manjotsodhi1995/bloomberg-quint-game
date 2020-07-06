@@ -1,20 +1,21 @@
-const UNKNOWN = 'unknown';
-const EMPTY = '';
-const DIAMOND = 'diamond';
-const ARROW_LEFT = 'arrow-left';
-const ARROW_RIGHT = 'arrow-right';
-const ARROW_UP = 'arrow-up';
-const ARROW_DOWN = 'arrow-down';
+const UNKNOWN = "unknown";
+const EMPTY = "";
+const DIAMOND = "diamond";
+const ARROW_LEFT = "arrow-left";
+const ARROW_RIGHT = "arrow-right";
+const ARROW_UP = "arrow-up";
+const ARROW_DOWN = "arrow-down";
 
+//initializing the cell with the questionmark sign
 class Cell {
   constructor(id) {
     this.id = id;
     this.image = UNKNOWN;
-    this.value = '';
+    this.value = "";
   }
 
   addDiamond() {
-    if (this.value === '') {
+    if (this.value === "") {
       this.value = DIAMOND;
       return true;
     }
@@ -23,16 +24,16 @@ class Cell {
 
   addHint(direction) {
     switch (direction) {
-      case 'left':
+      case "left":
         this.image = ARROW_LEFT;
         break;
-      case 'right':
+      case "right":
         this.image = ARROW_RIGHT;
         break;
-      case 'up':
+      case "up":
         this.image = ARROW_UP;
         break;
-      case 'down':
+      case "down":
         this.image = ARROW_DOWN;
         break;
       default:

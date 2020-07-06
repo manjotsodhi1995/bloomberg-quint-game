@@ -1,12 +1,13 @@
-const Cell = require('./cell');
+const Cell = require("./cell");
 
+// class to create the board logic
 class Board {
   constructor() {
     this.cells = this._initializeCells();
 
     this._diamondCells = [];
     this._revealedDiamonds = 0;
-    this._cellWithHint = '';
+    this._cellWithHint = "";
 
     this.unopenedCells = 64;
     this.gameOver = false;
@@ -14,6 +15,7 @@ class Board {
     this._addDiamonds();
   }
 
+  // initialize cell with an id for 8*8 board
   _initializeCells() {
     const cells = [];
     let cellId = 0;
@@ -27,22 +29,26 @@ class Board {
     return cells;
   }
 
+  // get a particular cell
   _getCell(xIndex, yIndex) {
     return this.cells[xIndex][yIndex];
   }
 
+  // clear the hints
   _clearHints() {
-    if (this._cellWithHint !== '') {
+    if (this._cellWithHint !== "") {
       this._cellWithHint.clearHint();
     }
   }
 
+  // fimd the distance between the cells
   _findDistance(xIndex1, yIndex1, xIndex2, yIndex2) {
     const xDiff = (xIndex1 - xIndex2) ** 2;
     const yDiff = (yIndex1 - yIndex2) ** 2;
-    return ((xDiff + yDiff) ** 0.5);
+    return (xDiff + yDiff) ** 0.5;
   }
 
+  // find the nearest diamond
   _findNearestDiamond(cell, xIndex, yIndex) {
     let minX = 0;
     let minY = 0;
@@ -50,9 +56,14 @@ class Board {
 
     for (let i = 0, len = this._diamondCells.length; i < len; i += 1) {
       const diamondCell = this._diamondCells[i];
-      const distance = this._findDistance(xIndex, yIndex, diamondCell[0], diamondCell[1]);
+      const distance = this._findDistance(
+        xIndex,
+        yIndex,
+        diamondCell[0],
+        diamondCell[1]
+      );
       const cellImage = this._getCell(diamondCell[0], diamondCell[1]).image;
-      if (distance < minDistance && cellImage === 'unknown') {
+      if (distance < minDistance && cellImage === "unknown") {
         minDistance = distance;
         [minX, minY] = diamondCell;
       }
@@ -60,44 +71,50 @@ class Board {
     return { nearestXIndex: minX, nearestYIndex: minY };
   }
 
+  // find the nearest diamond direction
   _findNearestDiamondDirection(cell) {
     const { xIndex, yIndex } = this._findCoordinatesForId(cell.id);
-    const { nearestXIndex, nearestYIndex } = this._findNearestDiamond(cell, xIndex, yIndex);
+    const { nearestXIndex, nearestYIndex } = this._findNearestDiamond(
+      cell,
+      xIndex,
+      yIndex
+    );
 
     const xDiff = xIndex - nearestXIndex;
     const yDiff = yIndex - nearestYIndex;
 
     if (xDiff === 0) {
       if (yDiff > 0) {
-        return 'left';
+        return "left";
       }
-      return 'right';
+      return "right";
     }
 
     if (yDiff === 0) {
       if (xDiff > 0) {
-        return 'up';
+        return "up";
       }
-      return 'down';
+      return "down";
     }
 
     if (xDiff > 0) {
-      if ((yDiff > 0) && (xDiff - yDiff) < 0) {
-        return 'left';
-      } else if ((yDiff < 0) && (xDiff - yDiff) < 0) {
-        return 'right';
+      if (yDiff > 0 && xDiff - yDiff < 0) {
+        return "left";
+      } else if (yDiff < 0 && xDiff - yDiff < 0) {
+        return "right";
       }
-      return 'up';
+      return "up";
     }
 
-    if ((yDiff > 0) && (xDiff - yDiff) < 0) {
-      return 'left';
-    } else if ((yDiff < 0) && (xDiff - yDiff) < 0) {
-      return 'right';
+    if (yDiff > 0 && xDiff - yDiff < 0) {
+      return "left";
+    } else if (yDiff < 0 && xDiff - yDiff < 0) {
+      return "right";
     }
-    return 'down';
+    return "down";
   }
 
+  // update the hints
   _updateHint(cell) {
     this._clearHints();
     const direction = this._findNearestDiamondDirection(cell);
@@ -106,6 +123,7 @@ class Board {
     this._cellWithHint = cell;
   }
 
+  // reveal the diamond
   revealDiamond(id) {
     const cell = this._findCell(id);
     const diamondFound = cell.reveal();
@@ -121,10 +139,12 @@ class Board {
     }
   }
 
+  // find the coordinates of a particular id
   _findCoordinatesForId(id) {
     return { xIndex: parseInt(id / 8, 10), yIndex: id % 8 };
   }
 
+  // find the cell
   _findCell(id) {
     const { xIndex, yIndex } = this._findCoordinatesForId(id);
 
@@ -132,13 +152,15 @@ class Board {
     return this._getCell(xIndex, yIndex);
   }
 
+  //get the random coordinates
   _getRandomCoordinates() {
-    return ({
+    return {
       xIndex: Math.floor(Math.random() * 8),
-      yIndex: Math.floor(Math.random() * 8),
-    });
+      yIndex: Math.floor(Math.random() * 8)
+    };
   }
 
+  // adding the diamond at 8 random places
   _addDiamonds() {
     let diamondCount = 0;
     while (diamondCount < 8) {
